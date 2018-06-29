@@ -13,6 +13,32 @@ function setup(){
 }
 
 
+function linearRegression(){
+
+  var xsum = 0;
+  var ysum = 0;
+
+  for(var i = 0; i < data.length; i++){
+    xsum += data[i].x;
+    ysum += data[i].y
+  }
+
+  var xmean = xsum / data.length;
+  var ymean = ysum / data.length;
+  var num = 0;
+  var den = 0;
+
+  for(var i = 0; i < data.length; i++){
+    num += (data[i].x - xmean) * (data[i].y - ymean);
+    den += (data[i].x - xmean) *(data[i].x - xmean);
+  }
+
+  slope  = num / den;
+  yint = ymean - slope * xmean;
+
+
+}
+
 
 
 function drawLine(){
@@ -36,7 +62,7 @@ function drawLine(){
 
 
 }
-var botSum = 0;
+
 function mousePressed(){
   var x = map(mouseX, 0, width, 0, 1);
   var y = map(mouseY, 0, height, 1, 0);
@@ -44,17 +70,6 @@ function mousePressed(){
   var point = createVector(x,y);
   data.push(point);
 
-  if(data.length > 1){
-  xBar = ((xBar * (data.length-1)) + x) / data.length;
-  yBar = ((yBar * (data.length-1)) + y) / data.length;
-
-
-  slope = (slope * botSum) + (x - xBar)*(y-yBar);
-  botSum += (x-xBar) * (x-xBar);
-  slope = slope / botSum;
-  yint = yBar - (slope * xBar);
-  console.log("slope = " + slope);
-}
 }
 
 
@@ -70,8 +85,11 @@ function draw(){
       ellipse(x, y, 8,8);
 
     }
+    if(data.length > 1){
+      linearRegression();
+      drawLine();
 
-    drawLine();
+    }
 
 
 
