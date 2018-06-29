@@ -1,4 +1,7 @@
 var data = [];
+var slope = 1;
+var yint = 0;
+
 
 
 function setup(){
@@ -8,6 +11,27 @@ function setup(){
 
 }
 
+function drawLine(){
+
+  var xmin = 0;
+  var ymin = slope * xmin + yint;
+  xmin = map(xmin, 0, 1, 0, width);
+  ymin = map(ymin, 0, 1, height, 0);
+
+  var xmax = 1;
+  var ymax = slope * xmax + yint;
+  xmax = map(xmax, 0, 1, 0, width);
+  ymax = map(ymax, 0, 1, height, 0);
+
+
+  stroke(255, 0, 255);
+  line(xmin, ymin, xmax, ymax);
+
+
+
+
+
+}
 
 function mousePressed(){
   var x = map(mouseX, 0, width, 0, 1);
@@ -28,6 +52,8 @@ function draw(){
       ellipse(x, y, 8,8);
 
     }
+
+    drawLine();
 
 
 
