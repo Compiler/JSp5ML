@@ -13,10 +13,7 @@ function setup(){
 }
 
 
-function linearRegression(){
 
-
-}
 
 function drawLine(){
 
