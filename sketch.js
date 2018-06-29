@@ -1,12 +1,19 @@
 var data = [];
-var slope = 1;
+var slope = 1.0;
 var yint = 0;
-
+var xBar = 0.001;
+var yBar = 0.001;
 
 
 function setup(){
   createCanvas(400,400);
 
+
+
+}
+
+
+function linearRegression(){
 
 
 }
@@ -32,7 +39,7 @@ function drawLine(){
 
 
 }
-
+var botSum = 0;
 function mousePressed(){
   var x = map(mouseX, 0, width, 0, 1);
   var y = map(mouseY, 0, height, 1, 0);
@@ -40,7 +47,21 @@ function mousePressed(){
   var point = createVector(x,y);
   data.push(point);
 
+  if(data.length > 1){
+  xBar = ((xBar * (data.length-1)) + x) / data.length;
+  yBar = ((yBar * (data.length-1)) + y) / data.length;
+
+
+  slope = (slope * botSum) + (x - xBar)*(y-yBar);
+  botSum += (x-xBar) * (x-xBar);
+  slope = slope / botSum;
+  yint = yBar - (slope * xBar);
+  console.log("slope = " + slope);
 }
+}
+
+
+
 
 function draw(){
     background(51);
