@@ -4,16 +4,31 @@ var data = [];
 
 var weights = [];
 
+var points = new Array(50);
 function setup(){
   createCanvas(800,800);
 	randomWeights();
 
 	var inputs = [-1, 0.5];
 	var g = guess(inputs);
-	console.log(g);
+	randomPoints();
+}
+
+function getRndInteger(min, max) {
+    return Math.floor(random(min, max)) + min;
 }
 
 
+function randomPoints(){
+	for(var i = 0; i < points.length; i++){
+		var rx = random(0, width);
+		var ry = random(0, height);
+		points[i] = [rx, ry, 0];
+		points[i][2] = points[i][1] > points[i][0] ? 1 : 0;
+		console.log(points[i][0] + ", " + points[i][1] + ", " + points[i][2])
+	}
+
+}
 
 function randomWeights(){
 	for(var i = 0; i < 2; i++)
@@ -30,23 +45,14 @@ function guess(inputs){
 		return output;
 }
 
-function mousePressed(){
-  var x = map(mouseX, 0, width, 0, 1);
-  var y = map(mouseY, 0, height, 1, 0);
-
-  var point = createVector(x,y);
-  data.push(point);
-
-}
-
 function draw(){
-    background(44);
-    for(var i = 0; i < data.length; i++){
-      var x = map(data[i].x, 0, 1, 0, width);
-      var y = map(data[i].y, 0, 1, height, 0);
-      fill(255);
-      stroke(255);
-      ellipse(x, y, 8,8);
+    background(0);
+    for(var i = 0; i < points.length; i++){
+      if(points[i][2] == 0) stroke(255,0,0);
+			else stroke(0,255,0);
+
+      fill(0);
+      ellipse(points[i][0], points[i][1], 8,8);
 
     }
 
