@@ -49,7 +49,18 @@ class NeuralNet{
 		let outputLayer = math.matrix(math.multiply(this.weights[1], hiddenLayer));
 		math.add(outputLayer, this.bias[1]);
 		this.sigmoid(outputLayer);
+
+
+
 		return outputLayer.subset(math.index(0, 0));
+
+	}
+
+
+	train(inputs, label){
+
+
+
 
 	}
 
