@@ -15,8 +15,10 @@ class NeuralNet{
 		this.bias = new Array(this.weights.length);
 		this.bias[0] = math.matrix();
 		this.bias[0].resize([this.numHiddenNodes, 1]);
+		this.bias[0] = math.squeeze(this.bias[0]);
 		this.bias[1] = math.matrix();
 		this.bias[1].resize([this.numOutputs, 1]);
+		this.bias[1] = math.squeeze(this.bias[1]);
 
 
 	}
@@ -41,7 +43,6 @@ class NeuralNet{
 
 		//hidden layer sum
 		let hiddenLayer = math.matrix(math.multiply(this.weights[0], input));
-		hiddenLayer.resize([3,1]);
 		math.add(hiddenLayer, this.bias[0]);
 		this.sigmoid(hiddenLayer);
 
@@ -51,8 +52,7 @@ class NeuralNet{
 		this.sigmoid(outputLayer);
 
 
-
-		return outputLayer.subset(math.index(0, 0));
+		return math.squeeze(outputLayer);
 
 	}
 

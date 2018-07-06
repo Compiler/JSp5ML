@@ -5,7 +5,7 @@ var offsets = new Array(3);
 
 function setup(){
 	createCanvas(1080,800);
-	inputNodes = 3; hiddenNodes = 3; outputNodes = 1;
+	inputNodes = 3; hiddenNodes = 7; outputNodes = 1;
 	net = new NeuralNet(inputNodes, hiddenNodes,outputNodes);
 	net.feedforward([1,2,3]);
 	offsets[0] = (2 * (height/3)) / inputNodes;
