@@ -9,6 +9,11 @@ function setup(){
 	for(let m = 0; m < inputNodes; m++) input[m] = random();
 	net = new NeuralNet(inputNodes, hiddenNodes,outputNodes);
 	net.feedforward(input);
+	net.train(input, input);
+
+
+
+
 	offsets[0] = (2 * (height/3)) / inputNodes;
 	offsets[1] = (height) / hiddenNodes;
 	offsets[2] = (height/3) / outputNodes;
@@ -33,18 +38,20 @@ function draw(){
 	stroke(255);
 	fill(0);
 
-	for(let i = 0; i < 3; i++)
-		for(let k = 0; k < this.points[i].length; k++){
-			this.points[i][k].draw();
-		}
+
 	for(let i = 0; i < inputNodes; i++)
 		for(let k = 0; k < hiddenNodes; k++){
-			line(this.points[0][i].getX() + sz / 2,this.points[0][i].getY(),this.points[1][k].getX() - sz / 2,this.points[1][k].getY());
+			line(this.points[0][i].getX(),this.points[0][i].getY(),this.points[1][k].getX(),this.points[1][k].getY());
 		}
 
 	for(let i = 0; i < hiddenNodes; i++)
 		for(let k = 0; k < outputNodes; k++){
-			line(this.points[1][i].getX() + sz / 2,this.points[1][i].getY(),this.points[2][k].getX() - sz / 2,this.points[2][k].getY());
+			line(this.points[1][i].getX(),this.points[1][i].getY(),this.points[2][k].getX(),this.points[2][k].getY());
+		}
+
+	for(let i = 0; i < 3; i++)
+		for(let k = 0; k < this.points[i].length; k++){
+			this.points[i][k].draw();
 		}
 
 

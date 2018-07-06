@@ -51,13 +51,19 @@ class NeuralNet{
 		math.add(outputLayer, this.bias[1]);
 		this.sigmoid(outputLayer);
 
-
-		return math.squeeze(outputLayer);
+		return outputLayer.toArray();
 
 	}
 
 
-	train(inputs, label){
+	train(inputs, labels){
+
+		let outputs = this.feedforward(inputs);
+
+		outputs = math.matrix(outputs);
+		print(outputs.toString());
+		let error = math.subtract(labels, outputs);
+
 
 
 
