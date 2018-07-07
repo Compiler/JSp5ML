@@ -4,12 +4,12 @@ var inputNodes, hiddenNodes, outputNodes;
 var offsets = new Array(3);
 function setup(){
 	createCanvas(1080,800);
-	inputNodes = 4; hiddenNodes = 7; outputNodes = 2;
+	inputNodes = 2; hiddenNodes = 2; outputNodes = 1;
 	let input = new Array(inputNodes);
 	for(let m = 0; m < inputNodes; m++) input[m] = random();
 	net = new NeuralNet(inputNodes, hiddenNodes,outputNodes);
 	net.feedforward(input);
-	net.train(input, input);
+	net.train(input, [1]);
 
 
 

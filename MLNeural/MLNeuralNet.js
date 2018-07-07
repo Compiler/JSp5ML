@@ -59,12 +59,11 @@ class NeuralNet{
 	train(inputs, labels){
 
 		let outputs = this.feedforward(inputs);
-
 		outputs = math.matrix(outputs);
-		print(outputs.toString());
-		let error = math.subtract(labels, outputs);
+		let outputErrors = math.subtract(labels, outputs);
 
-
+		let hiddenErrors = math.transpose(this.weights[1]);
+		hiddenErrors = math.multiply(hiddenErrors, outputErrors);
 
 
 
