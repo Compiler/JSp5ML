@@ -65,7 +65,7 @@ class NeuralNet{
 		let hiddenErrors = math.transpose(this.weights[1]);
 		hiddenErrors = math.multiply(hiddenErrors, outputErrors);
 
-
+		//TODO; gradients for back prop
 
 	}
 
