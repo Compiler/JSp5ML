@@ -9,7 +9,7 @@ function setup(){
 	for(let m = 0; m < inputNodes; m++) input[m] = random();
 	net = new NeuralNet(inputNodes, hiddenNodes,outputNodes);
 	net.feedforward(input);
-	net.train(input, [1]);
+	net.train(input, [1] );
 
 
 
